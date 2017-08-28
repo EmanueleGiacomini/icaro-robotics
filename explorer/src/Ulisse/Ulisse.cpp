@@ -7,7 +7,7 @@
  */
 #include "Ulisse.h"
 
-Ulisse::Ulisse(const int motor_A, const int pwm_A, const int motor_B, const int pwm_B, const int* light_sens_pin){
+Ulisse::Ulisse(const int motor_A, const int pwm_A, const int motor_B, const int pwm_B, const int[] light_sens_pin){
   pinMode(motor_A, OUTPUT);
   pinMode(motor_B, OUTPUT);
   pinMode(pwm_A, OUTPUT);

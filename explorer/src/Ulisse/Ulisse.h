@@ -26,7 +26,7 @@ public:
     @param pwm_B Pwm pin relative to motor B.
     @param light_sens_pin pointer to light sensor array (3 sensor from right to left).
   */
-  Ulisse(const int motor_A, const int pwm_A, const int motor_B, const int pwm_B, const int* light_sens_pin);
+  Ulisse(const int motor_A, const int pwm_A, const int motor_B, const int pwm_B, const int[] light_sens_pin);
   void goForward();
   void goRight();
   void goLeft();
