@@ -10,14 +10,36 @@
 #define Phoenix_h
 
 #include "Arduino.h"
+#include "math.h"
 
-class Phoenix{
+class ShiftRegister{
 public:
-	Phoenix(const int* motor_pin);
+	ShiftRegister();
+	void begin(const int latch, const int clock, const int data);
+	void setLed(const int bit, const int state);
+	void setMotor(const int bit, const int state);
+	void update(void);
+private:
+	int _latch, _clock, _data;
+	byte _led_byte = 0;
+	byte _motor_byte = 0;
+};
+
+class Phoenix{  
+public:
+	Phoenix(const int* motor_pin,const int* shift_reg_pin);
+	void move(const int direction, const int rotation, const int velocity);
 private:
 	int _motor_pin[4];
+	const float _motor_ang_comp[4][2] = {{0.5, -0.8660}, {0.5, 0.8660}, {-0.7071,0.7071}, {-0.7071,-0.7071}};
+	void motorDrive(ShiftRegister* shreg,const int motor, const int velocity);
+	ShiftRegister _shreg();
 
 };
+
+
+
+
 
 #endif
 
