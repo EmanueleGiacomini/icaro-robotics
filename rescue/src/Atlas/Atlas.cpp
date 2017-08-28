@@ -45,6 +45,6 @@ void Atlas::goBack(){
   analogWrite(_pwm_B, _vel);
 }
 
-void Atlas::setSpeed(const int target_vel){
+void Atlas::setVel(const int target_vel){
   _vel = target_vel;
 }

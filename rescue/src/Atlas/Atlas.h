@@ -22,8 +22,7 @@ public:
   void goRight();
   void goLeft();
   void goBack();
-
-  void setSpeed(const int target_vel);
+  void setVel(const int target_vel);
 };
 
 #endif
