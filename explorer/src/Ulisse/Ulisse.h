@@ -1,6 +1,6 @@
 /**
  * Ulisse.h
- * Purpose: basic library to interface with explorer robot
+ * Purpose: Basic interface for icaro explorer robot
  *
  * @author Emanuele Giacomini
  * @version 0.1 28/08/17

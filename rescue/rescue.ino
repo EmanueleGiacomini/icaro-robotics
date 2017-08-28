@@ -6,7 +6,7 @@
  * @version 0.1 28/08/17
  */
 
-#import "src/Atlas.h"
+#import "src/Atlas/Atlas.h"
 
 void setup() {
 
