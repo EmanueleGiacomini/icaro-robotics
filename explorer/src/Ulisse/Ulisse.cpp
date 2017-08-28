@@ -47,6 +47,14 @@ void Ulisse::goBack(){
   analogWrite(_pwm_A, _vel);
   analogWrite(_pwm_B, _vel);
 }
+
+void Ulisse::stop(){
+  digitalWrite(motor_A,HIGH);
+  digitalWrite(motor_B,HIGH);
+  analogWrite(_pwm_A, 0);
+  analogWrite(_pwm_B, 0);
+}
+
 void Ulisse::setVel(const int target_vel){
   _vel = constrain(target_vel, 0, 255);
 }

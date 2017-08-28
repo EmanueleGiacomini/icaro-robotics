@@ -31,6 +31,7 @@ public:
   void goRight();
   void goLeft();
   void goBack();
+  void stop();
   /**
     Set the velocity of the motors
 
