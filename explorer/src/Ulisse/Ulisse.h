@@ -16,11 +16,25 @@ class Ulisse{
   int _motor_B, _pwm_B;
   int _vel;
 public:
-  Ulisse(const int motor_A, const int pwm_A, const int motor_B, const int pwm_B);
+  /**
+    Initialize the Ulisse class.
+
+    @param motor_A The direction pin relative to motor A (Right motor).
+    @param pwm_A Pwm pin relative to motor A.
+    @param motor_B Same as motor_A but relative to motor B (Left motor).
+    @param pwm_B Pwm pin relative to motor B.
+    @param light_sens_pin pointer to light sensor array (3 sensor from right to left).
+  */
+  Ulisse(const int motor_A, const int pwm_A, const int motor_B, const int pwm_B, const int* light_sens_pin);
   void goForward();
   void goRight();
   void goLeft();
   void goBack();
+  /**
+    Set the velocity of the motors
+
+    @param target_vel PWM value to controll the motors. Goes from 0 to 255.
+  */
   void setVel(const int target_vel);
 };
 

@@ -44,5 +44,5 @@ void Ulisse::goBack(){
   analogWrite(_pwm_B, _vel);
 }
 void Ulisse::setVel(const int target_vel){
-  _vel = target_vel;
+  _vel = constrain(target_vel, 0, 255);
 }
