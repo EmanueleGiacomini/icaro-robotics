@@ -9,6 +9,8 @@
 #ifndef Atlas_h
 #define Atlas_h
 
+#include "Arduino.h"
+
 class Atlas{
 public:
   Atlas();
