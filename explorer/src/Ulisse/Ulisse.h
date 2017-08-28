@@ -42,15 +42,15 @@ public:
   /**
     Gather light data from the right sensor
   */
-  int getLightRight();
+  int readLightRight();
   /**
     Gather light data from the front sensor
   */
-  int getLightFront();
+  int readLightFront();
   /**
     Gather light data from the left sensor
   */
-  int getLightLeft();
+  int readLightLeft();
 };
 
 #endif
