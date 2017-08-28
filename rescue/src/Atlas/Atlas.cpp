@@ -27,20 +27,20 @@ void Atlas::goForward(){
   analogWrite(_pwm_B, _vel);
 }
 void Atlas::goRight(){
-  digitalWrite(motor_A,HIGH);
+  digitalWrite(motor_A,LOW);
   digitalWrite(motor_B,LOW);
   analogWrite(_pwm_A, _vel);
   analogWrite(_pwm_B, _vel);
 }
 void Atlas::goLeft(){
   digitalWrite(motor_A,HIGH);
-  digitalWrite(motor_B,LOW);
+  digitalWrite(motor_B,HIGH);
   analogWrite(_pwm_A, _vel);
   analogWrite(_pwm_B, _vel);
 }
 void Atlas::goBack(){
-  digitalWrite(motor_A,HIGH);
-  digitalWrite(motor_B,LOW);
+  digitalWrite(motor_A,LOW);
+  digitalWrite(motor_B,HIGH);
   analogWrite(_pwm_A, _vel);
   analogWrite(_pwm_B, _vel);
 }
