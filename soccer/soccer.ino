@@ -9,14 +9,14 @@
  #include "src/Phoenix/Phoenix.h"
 
 const int motor_pwm_pins[] = {5, 9, 32, 4};
+const int shift_reg_pins[] = {30, 28, 17};
+Phoenix robot(motor_pwm_pins, shift_reg_pins);
 
-Phoenix robot(motor_pwm_pins);
 
  void setup(){
-  
  }
  
  void loop(){
-  
+  robot.move(150,0,254);
  }
 
