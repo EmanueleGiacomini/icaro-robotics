@@ -15,6 +15,7 @@ class Ulisse{
   int _motor_A, _pwm_A;
   int _motor_B, _pwm_B;
   int _vel;
+  int _light_sens_pin[3];
 public:
   /**
     Initialize the Ulisse class.
@@ -36,6 +37,19 @@ public:
     @param target_vel PWM value to controll the motors. Goes from 0 to 255.
   */
   void setVel(const int target_vel);
+
+  /**
+    Gather light data from the right sensor
+  */
+  int getLightRight();
+  /**
+    Gather light data from the front sensor
+  */
+  int getLightFront();
+  /**
+    Gather light data from the left sensor
+  */
+  int getLightLeft();
 };
 
 #endif
