@@ -24,9 +24,10 @@ public:
     @param pwm_A Pwm pin relative to motor A.
     @param motor_B Same as motor_A but relative to motor B (Left motor).
     @param pwm_B Pwm pin relative to motor B.
-    @param light_sens_pin pointer to light sensor array (3 sensor from right to left).
+    @param light_sens_pin Pointer to light sensor vector. Build the vector in this order: Right, Center, Left.
+    @param bumper_pin Pointer to bumper vector. Build the vector in this order: Right, Left.
   */
-  Ulisse(const int motor_A, const int pwm_A, const int motor_B, const int pwm_B, const int[] light_sens_pin);
+  Ulisse(const int motor_A, const int pwm_A, const int motor_B, const int pwm_B, const int[] light_sens_pin, const int[] bumper_pin);
   void goForward();
   void goRight();
   void goLeft();
@@ -51,6 +52,16 @@ public:
     Gather light data from the left sensor
   */
   int readLightLeft();
+  /**
+    Gather the state of the right bumper
+    @return 1 if the bumper is pressed, 0 otherwhise
+  */
+  int readBumperRight(void);
+  /**
+    Gather the state of the left bumper
+    @return 1 if the bumper is pressed, 0 otherwhise
+  */
+  int readBumperLeft(void);
 };
 
 #endif
