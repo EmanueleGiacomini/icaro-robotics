@@ -1,7 +1,7 @@
 /**
  * Phoenix.cpp
  * Purpose: interface with phoenix type soccer robots
- * 
+ *
  * @author Emanuele Giacomini
  * @version 0.2s 28/08/17
  */
@@ -57,17 +57,36 @@ Phoenix::Phoenix(const int* motor_pin, const int* shift_reg_pin){
 void Phoenix::move(const int direction, const int rotation, const int velocity){
 	float rad_direction = (direction * 71) / 4068;
 	float vel_x = cos(rad_direction) * velocity;
-	float vel_y = sin(rad_direction) * velocity; 
-
-	float motor_vel[4] = {0, 0, 0, 0};
+	float vel_y = sin(rad_direction) * velocity;
 
 	for(int i = 0; i < 4; i++){
 		motor_vel[i] = _motor_ang_comp[i][1] * vel_y;
 		motor_vel[i] -= _motor_ang_comp[i][0] * vel_x;
 		motor_vel[i] += rotation;
+	}
+}
 
+void Phoenix::move(const int direction, const int velocity){
+	float rad_direction = (direction * 71) / 4068;
+	float vel_x = cos(rad_direction) * velocity;
+	float vel_y = sin(rad_direction) * velocity;
+
+	for(int i = 0; i < 4; i++){
+		_motor_vel[i] += _motor_ang_comp[i][1] * vel_y;
+		_motor_vel[i] -= _motor_ang_comp[i][0] * vel_x;
+	}
+}
+void Phoenix::rotate(const int rotation){
+	for(int i = 0; i < 4; i++){
+		_motor_vel[i] += rotation;
+	}
+}
+
+void Phoenix::compute(void){
+	for(int i = 0; i < 4; i++){
 		//motorDrive(i, int(motor_vel[i]));
 	}
+	setVector(_motor_vel, 0);
 }
 
 
@@ -80,5 +99,11 @@ void Phoenix::motorDrive(ShiftRegister* shreg,const int motor, const int velocit
 		shreg->setMotor(motor * 2, LOW);
 		shreg->setMotor((motor * 2) + 1, HIGH);
 		analogWrite(_motor_pin[motor], -velocity);
+	}
+}
+
+void setVector(float[] vec, const float value){
+	for(int i = 0; i < sizeof(vec) / sizeof(float); i++){
+		vec[i] = value;
 	}
 }
