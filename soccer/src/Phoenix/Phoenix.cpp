@@ -70,7 +70,16 @@ void Phoenix::rotate(const int rotation){
 
 void Phoenix::compute(void){
 	for(int i = 0; i < 4; i++){
-		// Add function to drive motors
+		if(_motor_vel[i] >= 0){
+			_shreg.setMotor(i * 2, HIGH);
+			_shreg.setMotor((i * 2) + 1, LOW);
+			analogWrite(_motor_pin[i], _motor_vel[i]);
+		} else {
+			_shreg.setMotor(i * 2, LOW);
+			_shreg.setMotor((i * 2) + 1, HIGH);
+			analogWrite(_motor_pin[i], - _motor_vel[i]);
+		}
+		_shreg.update();
 	}
 	setVector(_motor_vel, 0);
 }
