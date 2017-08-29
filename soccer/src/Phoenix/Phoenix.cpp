@@ -10,10 +10,7 @@
 #include "Phoenix.h"
 
 
-ShiftRegister::ShiftRegister(){
-}
-
-void ShiftRegister::begin(const int latch, const int clock, const int data){
+ShiftRegister::ShiftRegister(const int latch, const int clock, const int data){
 	pinMode(latch,OUTPUT);
 	pinMode(clock,OUTPUT);
 	pinMode(data,OUTPUT);
@@ -47,7 +44,7 @@ void ShiftRegister::update(void){
 
 
 
-Phoenix::Phoenix(const int* motor_pin, const int* shift_reg_pin){
+Phoenix::Phoenix(const int* motor_pin, const int* shift_reg_pin) : _shreg(shift_reg_pin[0], shift_reg_pin[1], shift_reg_pin[2]) {
 	for(int i = 0; i < 4; i++){
 		_motor_pin[i] = motor_pin[i];
 		pinMode(motor_pin[i], OUTPUT);

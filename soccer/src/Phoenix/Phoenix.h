@@ -14,8 +14,7 @@
 
 class ShiftRegister{
 public:
-	ShiftRegister();
-	void begin(const int latch, const int clock, const int data);
+	ShiftRegister(const int latch, const int clock, const int data);
 	void setLed(const int bit, const int state);
 	void setMotor(const int bit, const int state);
 	void update(void);
@@ -29,8 +28,7 @@ class Phoenix{
 	int _motor_pin[4];
 	const float _motor_ang_comp[4][2] = {{0.5, -0.8660}, {0.5, 0.8660}, {-0.7071,0.7071}, {-0.7071,-0.7071}};
 	float _motor_vel[4] = {0, 0, 0, 0};
-
-	ShiftRegister _shreg();
+	ShiftRegister _shreg;
 
 public:
 	/**
