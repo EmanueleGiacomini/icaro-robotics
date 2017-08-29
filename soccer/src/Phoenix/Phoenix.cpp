@@ -10,10 +10,10 @@
 #include "Phoenix.h"
 
 
-Phoenix::ShiftRegister::ShiftRegister(){
+ShiftRegister::ShiftRegister(){
 }
 
-void Phoenix::ShiftRegister::begin(const int latch, const int clock, const int data){
+void ShiftRegister::begin(const int latch, const int clock, const int data){
 	pinMode(latch,OUTPUT);
 	pinMode(clock,OUTPUT);
 	pinMode(data,OUTPUT);
@@ -22,7 +22,7 @@ void Phoenix::ShiftRegister::begin(const int latch, const int clock, const int d
 	_data = data;
 }
 
-void Phoenix::ShiftRegister::setLed(const int bit, const int state){
+void ShiftRegister::setLed(const int bit, const int state){
 	if(state){
 		_led_byte |= 1 << bit;
 	} else {
@@ -30,7 +30,7 @@ void Phoenix::ShiftRegister::setLed(const int bit, const int state){
 	}
 }
 
-void Phoenix::ShiftRegister::setMotor(const int bit, const int state){
+void ShiftRegister::setMotor(const int bit, const int state){
 	if(state){
 		_motor_byte |= 1 << bit;
 	} else {
@@ -38,7 +38,7 @@ void Phoenix::ShiftRegister::setMotor(const int bit, const int state){
 	}
 }
 
-void Phoenix::ShiftRegister::update(void){
+void ShiftRegister::update(void){
 	digitalWrite(_latch, LOW);
 	shiftOut(_data, _clock, MSBFIRST, _led_byte);
 	shiftOut(_data, _clock, MSBFIRST, _motor_byte);

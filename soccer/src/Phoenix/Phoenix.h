@@ -12,24 +12,24 @@
 #include "Arduino.h"
 #include "math.h"
 
-
+class ShiftRegister{
+public:
+	ShiftRegister();
+	void begin(const int latch, const int clock, const int data);
+	void setLed(const int bit, const int state);
+	void setMotor(const int bit, const int state);
+	void update(void);
+private:
+	int _latch, _clock, _data;
+	byte _led_byte = 0;
+	byte _motor_byte = 0;
+};
 
 class Phoenix{
 	int _motor_pin[4];
 	const float _motor_ang_comp[4][2] = {{0.5, -0.8660}, {0.5, 0.8660}, {-0.7071,0.7071}, {-0.7071,-0.7071}};
 	float _motor_vel[4] = {0, 0, 0, 0};
-	class ShiftRegister{
-	public:
-		ShiftRegister();
-		void begin(const int latch, const int clock, const int data);
-		void setLed(const int bit, const int state);
-		void setMotor(const int bit, const int state);
-		void update(void);
-	private:
-		int _latch, _clock, _data;
-		byte _led_byte = 0;
-		byte _motor_byte = 0;
-	};
+
 	ShiftRegister _shreg();
 
 public:
