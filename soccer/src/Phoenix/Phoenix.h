@@ -29,18 +29,30 @@ class Phoenix{
 	int _motor_pin[4];
 	const float _motor_ang_comp[4][2] = {{0.5, -0.8660}, {0.5, 0.8660}, {-0.7071,0.7071}, {-0.7071,-0.7071}};
 	float _motor_vel[4] = {0, 0, 0, 0};
-	void motorDrive(ShiftRegister* shreg,const int motor, const int velocity);
+
 	ShiftRegister _shreg();
 
 public:
+	/**
+	*/
 	Phoenix(const int* motor_pin,const int* shift_reg_pin);
+	/**
+	*/
 	void move(const int direction, const int velocity);
+	/**
+	*/
 	void rotate(const int rotation);
+	/**
+
+	*/
 	void compute(void);
 };
-
-void setVector(float[] vec, const float value);
-
+/**
+	Set all values inside a given vector equal to a given value.
+	@param vec Pointer to a float type vector.
+	@param value Value to set the vector.
+*/
+void setVector(float* vec, const float value);
 
 
 #endif

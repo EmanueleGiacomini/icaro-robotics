@@ -1,7 +1,7 @@
 /**
  * soccer.ino
  * Purpose: basic interface for the phoenix soccer robot
- * 
+ *
  * @author Emanuele Giacomini
  * @version 0.2s 27/08/17
  */
@@ -15,8 +15,6 @@ Phoenix robot(motor_pwm_pins, shift_reg_pins);
 
  void setup(){
  }
- 
- void loop(){
-  robot.move(150,0,254);
- }
 
+ void loop(){
+ }
