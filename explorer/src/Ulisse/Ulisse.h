@@ -12,22 +12,19 @@
 #include "Arduino.h"
 
 class Ulisse{
-  int _motor_A, _pwm_A;
-  int _motor_B, _pwm_B;
+  int _motor_pin[4];
   int _vel;
   int _light_sens_pin[3];
 public:
   /**
     Initialize the Ulisse class.
 
-    @param motor_A The direction pin relative to motor A (Right motor).
-    @param pwm_A Pwm pin relative to motor A.
-    @param motor_B Same as motor_A but relative to motor B (Left motor).
-    @param pwm_B Pwm pin relative to motor B.
+    @param motor_pin Pointer to motor pins vector. Build the vector in this order:
+    Right-dir, Right-pwm, Left-dir, Left-pwm.
     @param light_sens_pin Pointer to light sensor vector. Build the vector in this order: Right, Center, Left.
     @param bumper_pin Pointer to bumper vector. Build the vector in this order: Right, Left.
   */
-  Ulisse(const int motor_A, const int pwm_A, const int motor_B, const int pwm_B, const int[] light_sens_pin, const int[] bumper_pin);
+  Ulisse(const int[] motor_pin, const int[] light_sens_pin, const int[] bumper_pin);
   void goForward();
   void goRight();
   void goLeft();
@@ -39,29 +36,13 @@ public:
     @param target_vel PWM value to controll the motors. Goes from 0 to 255.
   */
   void setVel(const int target_vel);
+  /**
+    Update data gathered by light sensors and bumpers
+  */
+  void update();
 
-  /**
-    Gather light data from the right sensor
-  */
-  int readLightRight();
-  /**
-    Gather light data from the front sensor
-  */
-  int readLightFront();
-  /**
-    Gather light data from the left sensor
-  */
-  int readLightLeft();
-  /**
-    Gather the state of the right bumper
-    @return 1 if the bumper is pressed, 0 otherwhise
-  */
-  int readBumperRight(void);
-  /**
-    Gather the state of the left bumper
-    @return 1 if the bumper is pressed, 0 otherwhise
-  */
-  int readBumperLeft(void);
+  int bumperData[2];
+  int lightData[3];
 };
 
 #endif

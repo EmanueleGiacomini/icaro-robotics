@@ -7,20 +7,19 @@
  */
 #include "Ulisse.h"
 
-Ulisse::Ulisse(const int motor_A, const int pwm_A, const int motor_B, const int pwm_B, const int[] light_sens_pin){
-  pinMode(motor_A, OUTPUT);
-  pinMode(motor_B, OUTPUT);
-  pinMode(pwm_A, OUTPUT);
-  pinMode(pwm_B, OUTPUT);
-  _motor_A = motor_A;
-  _motor_B = motor_B;
-  _pwm_A = pwm_A;
-  _pwm_B = pwm_B;
-
+Ulisse::Ulisse(const int[] motor_pin, const int[] light_sens_pin, const int[] bumper_pin){
+  for(int i = 0; i < 4; i++){
+    pinMode(motor_pin[i],OUTPUT);
+    _motor_pin[i] = motor_pin[i];
+  }
   _vel = 100;
-
   for(int i = 0; i < 3; i++){
+    pinMode(light_sens_pin[i],INPUT);
     _light_sens_pin[i] = light_sens_pin[i];
+  }
+  for(int i = 0; i < 3; i++){
+    pinMode(bumper_pin[i],INPUT);
+    _bumper_pin[i] = bumper_pin[i]
   }
 }
 void Ulisse::goForward(){
