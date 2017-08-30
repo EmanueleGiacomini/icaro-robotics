@@ -12,17 +12,24 @@
 #include "Arduino.h"
 
 class Atlas{
-  int _motor_A, _pwm_A;
-  int _motor_B, _pwm_B;
+  int _motor_pin[4];
   int _vel;
 
 public:
-  Atlas(const int motor_A, const int pwm_A, const int motor_B, const int pwm_B);
+  /**
+    Initialize the Atlas class.
+    @param motor_pin Pointer to motor pins vector. Build the vector in this order:
+    Right-dir, Right-pwm, Left-dir, Left-pwm.
+
+  */
+  Atlas(const int[] motor_pin);
   void goForward();
   void goRight();
   void goLeft();
   void goBack();
   void setVel(const int target_vel);
+
+
 };
 
 #endif
