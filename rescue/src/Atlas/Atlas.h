@@ -13,6 +13,7 @@
 
 class Atlas{
   int _motor_pin[4];
+  int _line_sensor_pin[3];
   int _vel;
 
 public:
@@ -22,13 +23,18 @@ public:
     Right-dir, Right-pwm, Left-dir, Left-pwm.
 
   */
-  Atlas(const int[] motor_pin);
+  Atlas(const int* motor_pin, const int* line_sensor_pin);
   void goForward();
   void goRight();
   void goLeft();
   void goBack();
   void setVel(const int target_vel);
+  /**
+    Update data gathered by line sensors and
+  */
+  void update();
 
+  int line_data[3];
 
 };
 
