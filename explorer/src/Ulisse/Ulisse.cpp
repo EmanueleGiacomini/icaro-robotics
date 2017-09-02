@@ -58,12 +58,12 @@ void Ulisse::setVel(const int target_vel){
   _vel = constrain(target_vel, 0, 255);
 }
 
-int Ulisse::getLightRight(){
-  return analogRead(_light_sens_pin[0]);
-}
-int Ulisse::getLightFront(){
-  return analogRead(_light_sens_pin[1]);
-}
-int Ulisse::getLightLeft(){
-  return analogRead(_light_sens_pin[2]);
+void Ulisse::update(){
+  for(int i = 0; i < sizeof(_light_sens_pin) / sizeof(int); i++){
+    lightData[i] = analogRead(_light_sens_pin[i]);
+  }
+
+  for(int i = 0; i < sizeof(_bumper_pin) / sizeof(int); i++){
+    bumperData[i] = analogRead(_bumper_pin[i]);
+  }
 }
