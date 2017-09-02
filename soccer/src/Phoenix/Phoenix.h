@@ -12,6 +12,7 @@
 #include "Arduino.h"
 #include "math.h"
 
+
 class ShiftRegister{
 public:
 	ShiftRegister(const int latch, const int clock, const int data);
@@ -30,6 +31,7 @@ class Phoenix{
 	float _motor_vel[4] = {0, 0, 0, 0};
 	ShiftRegister _shreg;
 
+	float _heading, _vnord, _delta_heading, _relative_heading;
 public:
 	/**
 		Initialize the phoenix class.
@@ -55,6 +57,13 @@ public:
 		Send data to the motors in order to achieve the desidered roto-translation.
 	*/
 	void compute(void);
+	/**
+		After getting the raw heading from the compass, the function process delta_heading and relative_heading.
+		delta_heading gives the heading distance from the vnord.
+		relative_heading gives the heading relative to the vnord.
+	*/
+	void setCompass(const int heading);
+	void setNord(const int vnord);
 };
 /**
 	Set all values inside a given vector equal to a given value.

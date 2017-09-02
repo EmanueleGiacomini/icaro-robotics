@@ -84,6 +84,27 @@ void Phoenix::compute(void){
 	setVector(_motor_vel, 0);
 }
 
+void Phoenix::setCompass(const int heading){
+	float delta_heading = _vnord - heading;
+	if(delta_heading > 180){
+		delta_heading -= 360;
+	} else if(delta_heading < -180){
+		delta_heading += 360;
+	}
+
+	_delta_heading = delta_heading;
+	float relative_heading = delta_heading + 90;
+	if(_relative_heading > 180){
+		_relative_heading -= 360;
+	} else if(_relative_heading < -180){
+		_relative_heading += 360;
+	}
+	_relative_heading = relative_heading;
+}
+void Phoenix::setNord(const int vnord){
+
+}
+
 void setVector(float* vec, const float value){
 	for(int i = 0; i < sizeof(vec) / sizeof(float); i++){
 		vec[i] = value;
