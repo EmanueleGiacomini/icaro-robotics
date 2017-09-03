@@ -102,7 +102,14 @@ void Phoenix::setCompass(const int heading){
 	_relative_heading = relative_heading;
 }
 void Phoenix::setNord(const int vnord){
+	_vnord = vnord;
+}
 
+float Phoenix::getHeading(){
+	return _relative_heading;
+}
+float Phoenix::getHeadingError(){
+	return _delta_heading;
 }
 
 void setVector(float* vec, const float value){

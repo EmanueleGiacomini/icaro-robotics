@@ -15,6 +15,8 @@
 
 class ShiftRegister{
 public:
+	/**
+	*/
 	ShiftRegister(const int latch, const int clock, const int data);
 	void setLed(const int bit, const int state);
 	void setMotor(const int bit, const int state);
@@ -63,7 +65,21 @@ public:
 		relative_heading gives the heading relative to the vnord.
 	*/
 	void setCompass(const int heading);
+	/**
+		Set the Virtual nord (Usually the enemy goal).
+	*/
 	void setNord(const int vnord);
+
+	/**
+		Returns heading data.
+		@return relative heading value [0- 360)
+	*/
+	float getHeading();
+	/**
+		Returns heading data.
+		@return delta heading value (-180 - 180)
+	*/
+	float getHeadingError();
 };
 /**
 	Set all values inside a given vector equal to a given value.
