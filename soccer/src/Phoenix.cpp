@@ -10,13 +10,16 @@
 #include "Phoenix.h"
 
 
-ShiftRegister::ShiftRegister(const int latch, const int clock, const int data){
-	pinMode(latch,OUTPUT);
-	pinMode(clock,OUTPUT);
-	pinMode(data,OUTPUT);
-	_latch = latch;
-	_clock = clock;
-	_data = data;
+ShiftRegister::ShiftRegister(){
+}
+
+void ShiftRegister::setup(const int* shift_reg_pins){
+	pinMode(shift_reg_pins[0],OUTPUT);
+	pinMode(shift_reg_pins[1],OUTPUT);
+	pinMode(shift_reg_pins[2],OUTPUT);
+	_latch = shift_reg_pins[0];
+	_clock = shift_reg_pins[1];
+	_data = shift_reg_pins[2];
 }
 
 void ShiftRegister::setLed(const int bit, const int state){

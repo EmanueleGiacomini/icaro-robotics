@@ -18,7 +18,8 @@ class ShiftRegister{
 public:
 	/**
 	*/
-	ShiftRegister(const int latch, const int clock, const int data);
+	ShiftRegister();
+	void setup(const int* shift_reg_pins);
 	void setLed(const int bit, const int state);
 	void setMotor(const int bit, const int state);
 	void update(void);
