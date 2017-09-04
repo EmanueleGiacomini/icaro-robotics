@@ -10,7 +10,9 @@
 #define Phoenix_h
 
 #include "Arduino.h"
+#include "SPI.h"
 #include "math.h"
+#include "Pixy/Pixy.h"
 #include "PID_v1/PID_v1.h"
 
 
@@ -29,10 +31,49 @@ private:
 	byte _motor_byte = 0;
 };
 
+class Line{
+	int _line_sensor_pin[12];
+	const float _line_angle[12];
+	int _line_status[12]
+	int _line_found = 0;
+public:
+	/**
+		Initialize Line object.
+	*/
+	Line();
+	/**
+		Setup pins for the Line object.
+		@param line_sensor_pin Pointer to line sensor pins vector.
+	*/
+	void setup(const int* line_sensor_pin);
+	/**
+		Gather data from the sensors and saves it on _status array.
+	*/
+	void update();
+	/**
+		Sets a sensor's threshold to detect a white line on the field
+		@param index The choosen sensor. choose an index of _line_sensor_pin vector.
+		@param threshold Value of the threshold. Goes from 0 to 1023.
+		*/
+	void setThreshold(const int index, const int threshold);
+	/**
+	Returns the current status of the Line object.
+	@return 0 if no line is found, 1 otherwhise
+	*/
+	int getStatus();
+	/**
+		Returns the best direction to get away from the line. Use only if status is 1.
+		@return the direction to take in order to get away from the line. Goes from 0 to 359.
+	*/
+	int getDirection();
+};
+
 class Phoenix{
 	int _motor_pin[4];
 	const float _motor_ang_comp[4][2] = {{0.5, -0.8660}, {0.5, 0.8660}, {-0.7071,0.7071}, {-0.7071,-0.7071}};
 	float _motor_vel[4] = {0, 0, 0, 0};
+
+
 	ShiftRegister _shreg;
 
 	float _heading, _vnord, _delta_heading, _relative_heading;
@@ -43,8 +84,9 @@ public:
 		Front-Left, Front-Right, Back-Right, Back-Left.
 		@param shift_reg_pin Pointer to shift register pins vector. Build the vector in this order:
 		Latch, Clock, Data.
+		@param line_sensor_pin Pointer to line sensor pins vector.
 	*/
-	Phoenix(const int* motor_pin,const int* shift_reg_pin);
+	Phoenix(const int* motor_pin, const int* shift_reg_pin, const int* line_sensor_pin);
 	/**
 		Compute velocity for each motor in order to move to a given direction.
 		@param direction Goes from 0 to 359 where 0 is the right side of the robot.

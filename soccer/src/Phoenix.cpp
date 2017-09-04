@@ -45,13 +45,26 @@ void ShiftRegister::update(void){
 	digitalWrite(_latch, HIGH);
 }
 
+Line::Line(){
+
+}
+
+Line::setup(const int* line_sensor_pin){
+	for(int i = 0; i < sizeof(line_sensor_pin) / sizeof(int), i++){
+		pinMode(line_sensor_pin[i], INPUT);
+		_line_sensor_pin[i] = line_sensor_pin[i];
+	}
+}
 
 
-Phoenix::Phoenix(const int* motor_pin, const int* shift_reg_pin) : _shreg(shift_reg_pin[0], shift_reg_pin[1], shift_reg_pin[2]) {
+
+Phoenix::Phoenix(const int* motor_pin, const int* shift_reg_pin, const int* line_sensor_pin) : _shreg() {
 	for(int i = 0; i < 4; i++){
 		_motor_pin[i] = motor_pin[i];
 		pinMode(motor_pin[i], OUTPUT);
 	}
+
+	_shreg.setup(shift_reg_pin);
 }
 
 void Phoenix::move(const int direction, const int velocity){
