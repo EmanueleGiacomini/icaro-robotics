@@ -11,6 +11,7 @@
 
 #include "Arduino.h"
 #include "math.h"
+#include "PID_v1/PID_v1.h"
 
 
 class ShiftRegister{
