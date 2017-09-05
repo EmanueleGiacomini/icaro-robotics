@@ -44,19 +44,35 @@ void ShiftRegister::update(void){
 	shiftOut(_data, _clock, MSBFIRST, _motor_byte);
 	digitalWrite(_latch, HIGH);
 }
-
+/////////////////////////////////////////////////////////////
+/////////////////////////   LINE  ///////////////////////////
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
 Line::Line(){
 
 }
 
-Line::setup(const int* line_sensor_pin){
-	for(int i = 0; i < sizeof(line_sensor_pin) / sizeof(int), i++){
+void Line::setup(const int* line_sensor_pin){
+	for(int i = 0; i < sizeof(line_sensor_pin) / sizeof(int); i++){
 		pinMode(line_sensor_pin[i], INPUT);
 		_line_sensor_pin[i] = line_sensor_pin[i];
 	}
 }
 
+void Line::update(){
+	_line_found = 0;
+	for(int i = 0; i < sizeof(_line_sensor_pin) / sizeof(int); i++){
+		int reading = analogRead(_line_sensor_pin[i]);
+		if(reading < _threshold[i]){
+			_line_status[i] = 1;
+			_line_found = 1;
+		}
+		else{
+			_line_status[i] = 0;
+		}
+	}
 
+}
 
 Phoenix::Phoenix(const int* motor_pin, const int* shift_reg_pin, const int* line_sensor_pin) : _shreg() {
 	for(int i = 0; i < 4; i++){

@@ -34,7 +34,8 @@ private:
 class Line{
 	int _line_sensor_pin[12];
 	const float _line_angle[12];
-	int _line_status[12]
+	int _line_status[12];
+	int _threshold[12];
 	int _line_found = 0;
 public:
 	/**
@@ -62,10 +63,14 @@ public:
 	*/
 	int getStatus();
 	/**
-		Returns the best direction to get away from the line. Use only if status is 1.
+		Returns the best direction to get away from the line. Use only if _line_found is 1.
 		@return the direction to take in order to get away from the line. Goes from 0 to 359.
 	*/
 	int getDirection();
+	/**
+		Returns the reading from a given sensor's index.
+	*/
+	int getReading(const int index);
 };
 
 class Phoenix{
