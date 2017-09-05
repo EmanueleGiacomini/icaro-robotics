@@ -80,6 +80,8 @@ class Phoenix{
 
 
 	ShiftRegister _shreg;
+	Line _line;
+	Pixy _pixy;
 
 	float _heading, _vnord, _delta_heading, _relative_heading;
 public:
@@ -129,6 +131,10 @@ public:
 		@return delta heading value (-180 - 180)
 	*/
 	float getHeadingError();
+	/**
+		Get data from line sensors and pixy.
+	*/
+	void updateData();
 };
 /**
 	Set all values inside a given vector equal to a given value.

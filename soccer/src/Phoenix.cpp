@@ -9,7 +9,10 @@
 #include "Arduino.h"
 #include "Phoenix.h"
 
-
+/////////////////////////////////////////////////////////////
+/////////////////////////   SHIFT REGISTER  /////////////////
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
 ShiftRegister::ShiftRegister(){
 }
 
@@ -74,13 +77,49 @@ void Line::update(){
 
 }
 
-Phoenix::Phoenix(const int* motor_pin, const int* shift_reg_pin, const int* line_sensor_pin) : _shreg() {
+void Line::setThreshold(const int index, const int threshold){
+	_threshold[index] = index;
+}
+
+int Line::getStatus(){
+	return _line_found;
+}
+
+int Line::getDirection(){
+	double x = 0;
+	double y = 0;
+	double direction;
+
+	for(int i = 0; i < sizeof(_line_status) / sizeof(int); i++){
+		if(_line_status[i]){
+			x += cos(_line_angle[i]);
+			y += sin(_line_angle[i]);
+		}
+	}
+	direction = atan2(y,x) + M_PI;
+	direction *= (4068 / 71);
+
+	return int(direction);
+}
+
+int Line::getReading(const int index){
+	return analogRead(_line_sensor_pin[index]);
+}
+
+
+/////////////////////////////////////////////////////////////
+/////////////////////////   PHOENIX  ////////////////////////
+/////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+Phoenix::Phoenix(const int* motor_pin, const int* shift_reg_pin, const int* line_sensor_pin) : _shreg(), _line(), _pixy() {
 	for(int i = 0; i < 4; i++){
 		_motor_pin[i] = motor_pin[i];
 		pinMode(motor_pin[i], OUTPUT);
 	}
 
 	_shreg.setup(shift_reg_pin);
+	_line.setup(line_sensor_pin);
+	_pixy.init();
 }
 
 void Phoenix::move(const int direction, const int velocity){
@@ -142,6 +181,21 @@ float Phoenix::getHeading(){
 }
 float Phoenix::getHeadingError(){
 	return _delta_heading;
+}
+
+void Phoenix::updateData(){
+	_line.update();
+
+	// Pixy
+	static int i = 0;
+	uint16_t blocks = _pixy.getBlocks();
+	if(blocks){
+		i++;
+
+		if(i % 50 == 0){
+			// Do stuff
+		}
+	}
 }
 
 void setVector(float* vec, const float value){
