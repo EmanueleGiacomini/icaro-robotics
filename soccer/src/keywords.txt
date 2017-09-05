@@ -1,0 +1,40 @@
+#######################################
+# Syntax Coloring Map For Phoenix library
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Phoenix KEYWORD1
+ShiftRegister KEYWORD1
+Line KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+setup	KEYWORD2
+setLed KEYWORD2
+setMotor  KEYWORD2
+update  KEYWORD2
+setThreshold  KEYWORD2
+getStatus KEYWORD2
+getDirection  KEYWORD2
+getReading  KEYWORD2
+move  KEYWORD2
+rotate  KEYWORD2
+setCompass  KEYWORD2
+setNord KEYWORD2
+getHeading  KEYWORD2
+getHeadingError KEYWORD2
+updateData  KEYWORD2
+setVector KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+#######################################
+# Constants (LITERAL1)
+#######################################
