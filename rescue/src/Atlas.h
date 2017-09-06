@@ -28,7 +28,7 @@ public:
     Right, Left.
 
   */
-  Atlas(const int[] motor_pin, const int[] line_sensor_pin, const int[] ultrasonic_pin);
+  Atlas(const int* motor_pin, const int* line_sensor_pin, const int* ultrasonic_pin);
   void goForward();
   void goRight();
   void goLeft();
@@ -36,16 +36,16 @@ public:
   void setVel(const int target_vel);
   /**
     Update data gathered by line sensors and
+    @param index Index of _line_sensor_pin
+    @return Value from 0 to 1024 (int)
   */
-  void update();
+  int readLine(const int index);
   /**
     Reads a given ultrasonic sensor.
     @param index Index of the ultrasonic sensor ( From _ultrasonic_pin array).
     @return the distance in centimeters from the object.
   */
   float readUltrasonic(const int index);
-
-  int line_data[3];
 
 };
 
