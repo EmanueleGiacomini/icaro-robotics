@@ -14,6 +14,7 @@
 class Atlas{
   int _motor_pin[4];
   int _line_sensor_pin[3];
+  int _ultrasonic_pin[2];
   int _vel;
 
 public:
@@ -21,9 +22,13 @@ public:
     Initialize the Atlas class.
     @param motor_pin Pointer to motor pins vector. Build the vector in this order:
     Right-dir, Right-pwm, Left-dir, Left-pwm.
+    @param line_sensor_pin Pointer to light pins vector. Build the vector in this order:
+    Right, Center, Left.
+    @param ultrasonic_pin Pointer to ultrasonic pins vector. Build the vector in this order:
+    Right, Left.
 
   */
-  Atlas(const int* motor_pin, const int* line_sensor_pin);
+  Atlas(const int[] motor_pin, const int[] line_sensor_pin, const int[] ultrasonic_pin);
   void goForward();
   void goRight();
   void goLeft();
@@ -33,6 +38,12 @@ public:
     Update data gathered by line sensors and
   */
   void update();
+  /**
+    Reads a given ultrasonic sensor.
+    @param index Index of the ultrasonic sensor ( From _ultrasonic_pin array).
+    @return the distance in centimeters from the object.
+  */
+  float readUltrasonic(const int index);
 
   int line_data[3];
 

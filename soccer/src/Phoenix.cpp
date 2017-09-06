@@ -74,7 +74,6 @@ void Line::update(){
 			_line_status[i] = 0;
 		}
 	}
-
 }
 
 void Line::setThreshold(const int index, const int threshold){

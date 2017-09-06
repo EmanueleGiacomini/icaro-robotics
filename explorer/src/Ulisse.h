@@ -15,7 +15,7 @@ class Ulisse{
   int _motor_pin[4];
   int _vel;
   int _light_sens_pin[3];
-  int _bumper_pin[2]
+  int _bumper_pin[2];
 public:
   /**
     Initialize the Ulisse class.

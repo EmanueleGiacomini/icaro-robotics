@@ -8,7 +8,7 @@
 
 #include "Atlas.h"
 
-Atlas::Atlas(const int* motor_pin, const int* line_sensor_pin){
+Atlas::Atlas(const int[] motor_pin, const int[] line_sensor_pin, const int[] ultrasonic_pin){
   for(int i = 0; i < 4; i++){
     _motor_pin[i] = motor_pin[i];
     pinMode(motor_pin[i], OUTPUT);
@@ -17,6 +17,10 @@ Atlas::Atlas(const int* motor_pin, const int* line_sensor_pin){
   for(int i = 0; i < 3; i++){
     _line_sensor_pin[i] = line_sensor_pin[i];
     pinMode(line_sensor_pin[i], INPUT);
+  }
+
+  for(int i = 0; i < 2; i++){
+    _ultrasonic_pin[i] = ultrasonic_pin[i];
   }
   _vel = 100;
 }
@@ -53,4 +57,19 @@ void Atlas::update(){
   for(int i = 0; i < 3; i++){
     line_data[i] = analogRead(_line_sensor_pin[i]);
   }
+}
+
+float Atlas::readUltrasonic(const int index){
+  int pin = _ultrasonic_pin[index];
+  unsigned long duration;
+
+  pinMode(pin, OUTPUT);
+  digitalWrite(pin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(pin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(pin, LOW);
+  pinMode(pin, INPUT);
+  duration = pulsein(pin, HIGH);
+  return float(duration / 58);
 }
