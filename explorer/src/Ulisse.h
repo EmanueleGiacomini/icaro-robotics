@@ -42,6 +42,12 @@ public:
   */
   void update();
 
+  int heatGasSensor();
+  /**
+
+  */
+  int readGas();
+
   int bumperData[2];
   int lightData[3];
 };

@@ -67,3 +67,10 @@ void Ulisse::update(){
     bumperData[i] = analogRead(_bumper_pin[i]);
   }
 }
+
+int Ulisse::heatGasSensor(){
+
+}
+int Ulisse::readGas(){
+
+}
