@@ -24,6 +24,7 @@ Atlas::Atlas(const int* motor_pin, const int* line_sensor_pin, const int* ultras
   }
   _vel = 100;
 }
+
 void Atlas::goForward(){
   digitalWrite(_motor_pin[0], HIGH);
   analogWrite(_motor_pin[1], _vel);
@@ -53,11 +54,11 @@ void Atlas::setVel(const int target_vel){
   _vel = target_vel;
 }
 
-void Atlas::readLine(const int index){
+int Atlas::readLine(const int index){
   return analogRead(_line_sensor_pin[index]);
 }
 
-float Atlas::readUltrasonic(const int index){
+int Atlas::readUltrasonic(const int index){
   int pin = _ultrasonic_pin[index];
   unsigned long duration;
 
@@ -69,5 +70,48 @@ float Atlas::readUltrasonic(const int index){
   digitalWrite(pin, LOW);
   pinMode(pin, INPUT);
   duration = pulseIn(pin, HIGH);
-  return float(duration / 58);
+  return int(duration / 58);
+}
+
+int Atlas::getLinePos(){
+  int line_position = 0;
+  for(int i = 0; i < 3; i++){
+    if(this->readLine(i) < _line_threshold[i]){
+      // Do stuff
+    }
+    else {
+    }
+  }
+}
+void Atlas::calibrate(){
+  int value_max[3] = {0,0,0};
+  int value_min[3] = {1024, 1024, 1024};
+  unsigned long current_millis, previous_millis;
+
+  previous_millis = millis();
+
+  while(current_millis - previous_millis < CALIBRATION_TIME){
+    this->setVel(100);
+    this->goRight();
+    // Get maximum and minimum values for each sensor
+    for(int i = 0; i < 3; i++){
+      int current_reading = this->readLine(i);
+
+      if(current_reading > value_max[i]){
+        value_max[i] = current_reading;
+      }
+
+      if(current_reading < value_min[i]){
+        value_min[i] = current_reading;
+      }
+    }
+    current_millis = millis();
+  }
+  // Calculate thresholds by calculating the gathered data's mean.
+  for(int i = 0; i < 3; i++){
+    this->setThreshold(i, (value_max[i] + value_min[i]) / 2);
+  }
+}
+void Atlas::setThreshold(const int index, const int threshold){
+  _line_threshold[index] = threshold;
 }
