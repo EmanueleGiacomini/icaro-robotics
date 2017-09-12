@@ -25,7 +25,7 @@ public:
     @param light_sens_pin Pointer to light sensor vector. Build the vector in this order: Right, Center, Left.
     @param bumper_pin Pointer to bumper vector. Build the vector in this order: Right, Left.
   */
-  Ulisse(const int[] motor_pin, const int[] light_sens_pin, const int[] bumper_pin);
+  Ulisse(const int* motor_pin, const int* light_sens_pin, const int* bumper_pin);
   void goForward();
   void goRight();
   void goLeft();
@@ -44,7 +44,12 @@ public:
   /**
     Initialize the gas sensor and pre-heats it in order to work.
   */
-  int heatGasSensor();
+  void heatGasSensor();
+  /**
+    Returns the current status of the gas sensor.
+    @return 1 if the sensor is ready, 0 otherwhise.
+  */
+  int gasReady();
   /**
     Gather data from the gas sensor.
     @return Analog read from the sensor (from 0 to 1024).

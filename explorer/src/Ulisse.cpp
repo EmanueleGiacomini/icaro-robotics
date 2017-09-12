@@ -7,7 +7,7 @@
  */
 #include "Ulisse.h"
 
-Ulisse::Ulisse(const int[] motor_pin, const int[] light_sens_pin, const int[] bumper_pin){
+Ulisse::Ulisse(const int* motor_pin, const int* light_sens_pin, const int* bumper_pin){
   for(int i = 0; i < 4; i++){
     pinMode(motor_pin[i],OUTPUT);
     _motor_pin[i] = motor_pin[i];
@@ -19,39 +19,39 @@ Ulisse::Ulisse(const int[] motor_pin, const int[] light_sens_pin, const int[] bu
   }
   for(int i = 0; i < 3; i++){
     pinMode(bumper_pin[i],INPUT);
-    _bumper_pin[i] = bumper_pin[i]
+    _bumper_pin[i] = bumper_pin[i];
   }
 }
 void Ulisse::goForward(){
-  digitalWrite(motor_A,HIGH);
-  digitalWrite(motor_B,LOW);
-  analogWrite(_pwm_A, _vel);
-  analogWrite(_pwm_B, _vel);
+  digitalWrite(_motor_pin[0],HIGH);
+  digitalWrite(_motor_pin[2],LOW);
+  analogWrite(_motor_pin[1], _vel);
+  analogWrite(_motor_pin[3], _vel);
 }
 void Ulisse::goRight(){
-  digitalWrite(motor_A,LOW);
-  digitalWrite(motor_B,LOW);
-  analogWrite(_pwm_A, _vel);
-  analogWrite(_pwm_B, _vel);
+  digitalWrite(_motor_pin[0],LOW);
+  digitalWrite(_motor_pin[2],LOW);
+  analogWrite(_motor_pin[1], _vel);
+  analogWrite(_motor_pin[3], _vel);
 }
 void Ulisse::goLeft(){
-  digitalWrite(motor_A,HIGH);
-  digitalWrite(motor_B,HIGH);
-  analogWrite(_pwm_A, _vel);
-  analogWrite(_pwm_B, _vel);
+  digitalWrite(_motor_pin[0],HIGH);
+  digitalWrite(_motor_pin[2],HIGH);
+  analogWrite(_motor_pin[1], _vel);
+  analogWrite(_motor_pin[3], _vel);
 }
 void Ulisse::goBack(){
-  digitalWrite(motor_A,LOW);
-  digitalWrite(motor_B,HIGH);
-  analogWrite(_pwm_A, _vel);
-  analogWrite(_pwm_B, _vel);
+  digitalWrite(_motor_pin[0],LOW);
+  digitalWrite(_motor_pin[2],HIGH);
+  analogWrite(_motor_pin[1], _vel);
+  analogWrite(_motor_pin[3], _vel);
 }
 
 void Ulisse::stop(){
-  digitalWrite(motor_A,HIGH);
-  digitalWrite(motor_B,HIGH);
-  analogWrite(_pwm_A, 0);
-  analogWrite(_pwm_B, 0);
+  digitalWrite(_motor_pin[0],HIGH);
+  digitalWrite(_motor_pin[2],HIGH);
+  analogWrite(_motor_pin[1], 0);
+  analogWrite(_motor_pin[3], 0);
 }
 
 void Ulisse::setVel(const int target_vel){
@@ -69,8 +69,12 @@ void Ulisse::update(){
 }
 
 int Ulisse::heatGasSensor(){
+}
+
+int Ulisse::gasReady(){
 
 }
+
 int Ulisse::readGas(){
 
 }
