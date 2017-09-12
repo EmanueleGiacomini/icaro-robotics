@@ -41,10 +41,13 @@ public:
     Update data gathered by light sensors and bumpers
   */
   void update();
-
+  /**
+    Initialize the gas sensor and pre-heats it in order to work.
+  */
   int heatGasSensor();
   /**
-
+    Gather data from the gas sensor.
+    @return Analog read from the sensor (from 0 to 1024).
   */
   int readGas();
 
