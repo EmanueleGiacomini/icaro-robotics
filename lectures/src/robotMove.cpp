@@ -4,6 +4,7 @@
 
 #include "robotMove.h"
 
+
 robotMove::robotMove(const char* shield_name){
   // Checks and setup the class by checking which shield the user has choosen.
   if(stringIsEqual(shield_name, 'arduino')){
@@ -24,15 +25,10 @@ robotMove::robotMove(const char* shield_name){
   }
 }
 
-int robotMove::checkShield(){
-  return _shield;
-}
-
 void robotMove::goForward(const int speed){
-  int current_shield = this->checkShield();
-  if(current_shield == 0){ // Arduino Shield.
+  if(_shield == 0){ // Arduino Shield.
 
-  } else if(current_shield == 1){ // SeedStudio Shield.
+  } else if(_shield == 1){ // SeedStudio Shield.
 
   }
 }
@@ -46,7 +42,9 @@ void robotMove::goLeft(const int speed){
 
 }
 
-
+int* vectorMalloc(const int size){
+  return (int*) malloc(size);
+}
 int stringIsEqual(const char* s1, const char* s2){
   int s1_len = sizeof(s1);
   int s2_len = sizeof(s2);
@@ -64,7 +62,7 @@ int stringIsEqual(const char* s1, const char* s2){
   return 0;
 }
 
-void vectorSet(const int* src, const int* dest){
+void vectorSet(const int* src, int* dest){
   int src_size = sizeof(src);
   int dest_size = sizeof(dest);
   int int_size = sizeof(int);

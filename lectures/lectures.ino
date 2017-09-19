@@ -6,10 +6,9 @@
   @version 1.0 18/09/17
 */
 
-#include "robotMove/robotMove.h"
+#include "src/robotMove.h"
 
-
-robotMove robot(1);
+robotMove robot('arduino');
 
 void setup(){
   Serial.begin(9600);
