@@ -22,6 +22,7 @@ class robotMove{
   const int _SEEDSTUDIO_SHIELD_PINOUT[6] = {8, 11, 9, 12, 13, 10};
 
   int* _motor_pin;
+  int _motor_pin_size;
   // _shield value depends on the shield choosen by the user: 0 for Arduino shield, 1 for Seedstudio shield.
   int _shield;
 public:
@@ -36,6 +37,10 @@ public:
 
   void driveRightMotor(const int speed);
   void driveLeftMotor(const int speed);
+
+  int getShield();
+  int* getMotorVector();
+  int getMotorSize();
 };
 
 int* vectorMalloc(const int size);
@@ -45,5 +50,5 @@ int stringIsEqual(const char* s1, const char* s2);
   @param src The source vector.
   @param dest The destination vector.
 */
-void vectorCopy(const int* src, int* dest);
+void vectorCopy(const int* src, int* dest, const int size);
 #endif
