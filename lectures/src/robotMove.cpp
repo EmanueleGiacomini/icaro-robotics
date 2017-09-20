@@ -132,6 +132,78 @@ void robotMove::stop(){
   }
 }
 
+void robotMove::driveRightMotor(const int speed){
+  unsigned int negative_speed = 0;
+  if(speed < 0){
+    negative_speed = !negative_speed;
+  }
+
+  switch(_shield){
+    case 0: {  // Arduino shield.
+      if(negative_speed){
+          pinMode(_motor_pin[0], LOW);
+      } else {
+        pinMode(_motor_pin[0], HIGH);
+      }
+
+      pinMode(_motor_pin[2], HIGH);
+      analogWrite(_motor_pin[1], speed);
+      analogWrite(_motor_pin[3], 0);
+      break;
+    }
+    case 1: {  // Seedstudio shield.
+      if(negative_speed){
+        pinMode(_motor_pin[0],HIGH);
+        pinMode(_motor_pin[1],LOW);
+      } else {
+        pinMode(_motor_pin[0],LOW);
+        pinMode(_motor_pin[1],HIGH);
+      }
+      pinMode(_motor_pin[3],HIGH);
+      pinMode(_motor_pin[4],HIGH);
+
+      analogWrite(_motor_pin[2], speed);
+      analogWrite(_motor_pin[5], 0);
+      break;
+    }
+  }
+}
+void robotMove::driveLeftMotor(const int speed){
+  unsigned int negative_speed = 0;
+  if(speed < 0){
+    negative_speed = !negative_speed;
+  }
+
+  switch(_shield){
+    case 0: {  // Arduino shield.
+      if(negative_speed){
+          pinMode(_motor_pin[2], HIGH);
+      } else {
+          pinMode(_motor_pin[2], LOW);
+      }
+      pinMode(_motor_pin[0], HIGH);
+      analogWrite(_motor_pin[1], 0);
+      analogWrite(_motor_pin[3], speed);
+      break;
+    }
+    case 1: {  // Seedstudio shield.
+      if(negative_speed){
+        pinMode(_motor_pin[3],HIGH);
+        pinMode(_motor_pin[4],LOW);
+      } else {
+        pinMode(_motor_pin[3],LOW);
+        pinMode(_motor_pin[4],HIGH);
+      }
+      pinMode(_motor_pin[0],HIGH);
+      pinMode(_motor_pin[1],HIGH);
+
+      analogWrite(_motor_pin[2], 0);
+      analogWrite(_motor_pin[5], speed);
+      break;
+    }
+  }
+}
+
 int* vectorMalloc(const int size){
   return (int*) malloc(size);
 }

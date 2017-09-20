@@ -15,5 +15,15 @@ void setup(){
 }
 
 void loop(){
+  robot.goForward(100);
+  delay(1000);
+  robot.goLeft(100);
+  delay(1000);
+  robot.goRight(100);
+  delay(1000);
+  robot.goBack(100);
+  delay(1000);
+  robot.stop();
+  delay(1000);
 
 }

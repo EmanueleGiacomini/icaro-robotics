@@ -28,11 +28,14 @@ public:
   /**
   */
   robotMove(const char* shield_name);
-  void goForward(const int speed);
-  void goBack(const int speed);
-  void goRight(const int speed);
-  void goLeft(const int speed);
+  void goForward(const int speed = 100);
+  void goBack(const int speed = 100);
+  void goRight(const int speed = 100);
+  void goLeft(const int speed = 100);
   void stop();
+
+  void driveRightMotor(const int speed);
+  void driveLeftMotor(const int speed);
 };
 
 int* vectorMalloc(const int size);
