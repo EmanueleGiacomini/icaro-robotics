@@ -19,11 +19,20 @@
 class Phoenix_compass{
   SFE_HMC6343 _compass;
   float _virtual_nord;
+  /**
+    Creates a circular interval for a given value.
+    Example:
+      value = -182
+      value = roundLimit(value, -180, 180);
+      value = 178
+    @return Integer inside between min and max values.
+  */
+  int roundLimit(const int value, const int min, const int max);
 public:
-  float heading_error;
-  float relative_heading;
+  int heading_error, heading, vnord;
 
   Phoenix_compass();
+  ~Phoenix_compass();
   /**
     Initialize the class.
     @return 1 if the compass is found. 0 otherwhise.
@@ -38,6 +47,10 @@ public:
     Set the current heading as virtual nord.
   */
   void setNord();
+  /**
+    Resets the HMC6343 module.
+  */
+  void reset();
   /**
     Starts calibration mode.
   */
