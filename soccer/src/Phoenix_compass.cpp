@@ -17,7 +17,7 @@ Phoenix_compass::~Phoenix_compass(){
 
 }
 
-int Phoenix_compass::begin(){
+int Phoenix_compass::init(){
   return _compass.init();
 }
 

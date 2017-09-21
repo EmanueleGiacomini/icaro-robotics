@@ -37,7 +37,7 @@ public:
     Initialize the class.
     @return 1 if the compass is found. 0 otherwhise.
   */
-  int begin();
+  int init();
   /**
     Gather data from the HMC6343 module and compute
     heading_error and relative_heading.
