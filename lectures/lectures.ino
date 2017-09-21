@@ -8,7 +8,7 @@
 
 #include "src/robotMove.h"
 
-robotMove robot('arduino');
+robotMove robot('seedstudio');
 
 void setup(){
   Serial.begin(9600);

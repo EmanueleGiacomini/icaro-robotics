@@ -9,7 +9,7 @@
 #ifndef Phoenix_h
 #define Phoenix_h
 
-#include "Arduino.h"
+#include <Arduino.h>
 #include "SPI.h"
 #include "math.h"
 #include "Pixy/Pixy.h"
