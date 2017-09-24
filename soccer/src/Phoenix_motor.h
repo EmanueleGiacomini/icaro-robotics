@@ -1,19 +1,19 @@
 /**
- * Phoenix.h
+ * Phoenix_motor.h
  * Purpose: interface with phoenix type soccer robots
  *
  * @author Emanuele Giacomini
  * @version 0.3 28/08/17
  */
 
-#ifndef Phoenix_h
-#define Phoenix_h
+#ifndef Phoenix_motor_h
+#define Phoenix_motor_h
 
 #include <Arduino.h>
 #include <math.h>
 #include "Phoenix_shiftreg.h"
 
-class Phoenix{
+class Phoenix_motor{
 	int _motor_pin[4];
 	const float _motor_ang_comp[4][2] = {{0.5, -0.8660}, {0.5, 0.8660}, {-0.7071,0.7071}, {-0.7071,-0.7071}};
 	float _motor_vel[4] = {0, 0, 0, 0};
@@ -22,7 +22,7 @@ public:
 	/**
 		Phoenix constructor
 	*/
-	Phoenix();
+	Phoenix_motor();
 	/**
 		Initialize the phoenix class.
 		@param motor_pin Pointer to motor pins vector. Build the vector in this order:

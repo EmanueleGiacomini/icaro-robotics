@@ -1,5 +1,5 @@
 /**
- * Phoenix.cpp
+ * Phoenix_motor.cpp
  * Purpose: interface with phoenix type soccer robots
  *
  * @author Emanuele Giacomini
@@ -7,13 +7,13 @@
  */
 
 
-#include "Phoenix.h"
+#include "Phoenix_motor.h"
 
 
-Phoenix::Phoenix(){
+Phoenix_motor::Phoenix_motor(){
 }
 
-void Phoenix::init(const int* motor_pin, const int* shift_reg_pin){
+void Phoenix_motor::init(const int* motor_pin, const int* shift_reg_pin){
 	for(int i = 0; i < 4; i++){
 		_motor_pin[i] = motor_pin[i];
 		pinMode(motor_pin[i], OUTPUT);
@@ -22,7 +22,7 @@ void Phoenix::init(const int* motor_pin, const int* shift_reg_pin){
 	phoenix_shreg.setup(shift_reg_pin);
 }
 
-void Phoenix::move(const int direction, const int velocity){
+void Phoenix_motor::move(const int direction, const int velocity){
 	float rad_direction = (direction * 71) / 4068;
 	float vel_x = cos(rad_direction) * velocity;
 	float vel_y = sin(rad_direction) * velocity;
@@ -33,13 +33,13 @@ void Phoenix::move(const int direction, const int velocity){
 	}
 }
 
-void Phoenix::rotate(const int rotation){
+void Phoenix_motor::rotate(const int rotation){
 	for(int i = 0; i < 4; i++){
 		_motor_vel[i] += rotation;
 	}
 }
 
-void Phoenix::compute(void){
+void Phoenix_motor::compute(void){
 	for(int i = 0; i < 4; i++){
 		if(_motor_vel[i] >= 0){
 			phoenix_shreg.setMotor(i * 2, HIGH);

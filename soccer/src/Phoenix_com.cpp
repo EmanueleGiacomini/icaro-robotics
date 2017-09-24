@@ -5,6 +5,7 @@
   @author Emanuele Giacomini
   @version 0.1 22/09/17
 */
+#include "Phoenix_com.h"
 
 Communicator::Communicator(){
 
@@ -14,6 +15,10 @@ Communicator::~Communicator(){
 
 }
 
-Communicator::init(uint8_t target_address){
+void Communicator::init(uint8_t target_address){
 
+}
+
+void Communicator::getData(uint8_t command_byte){
+  
 }

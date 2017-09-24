@@ -25,7 +25,7 @@ public:
   ~Communicator();
   /**
   */
-  void init(uint8_t target_address)
+  void init(uint8_t target_address);
   void getData(uint8_t command_byte);
 };
 
