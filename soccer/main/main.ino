@@ -1,9 +1,9 @@
 /**
- * soccer.ino
+ * main.ino
  * Purpose: basic interface for the phoenix soccer robot
  *
  * @author Emanuele Giacomini
- * @version 0.3 27/08/17
+ * @version 0.4 27/08/17
  */
 
 #include <Wire.h>
