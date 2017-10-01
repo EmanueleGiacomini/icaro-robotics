@@ -76,7 +76,7 @@ int Atlas::readUltrasonic(const int index){
 int Atlas::getLinePos(){
   int line_position = 0;
   for(int i = 0; i < 3; i++){
-    if(this->readLine(i) < _line_threshold[i]){
+    if(readLine(i) < _line_threshold[i]){
       // Do stuff
     }
     else {
@@ -91,11 +91,11 @@ void Atlas::calibrate(){
   previous_millis = millis();
 
   while(current_millis - previous_millis < CALIBRATION_TIME){
-    this->setVel(100);
-    this->goRight();
+    setVel(100);
+    goRight();
     // Get maximum and minimum values for each sensor
     for(int i = 0; i < 3; i++){
-      int current_reading = this->readLine(i);
+      int current_reading = readLine(i);
 
       if(current_reading > value_max[i]){
         value_max[i] = current_reading;
@@ -109,7 +109,7 @@ void Atlas::calibrate(){
   }
   // Calculate thresholds by calculating the gathered data's mean.
   for(int i = 0; i < 3; i++){
-    this->setThreshold(i, (value_max[i] + value_min[i]) / 2);
+    setThreshold(i, (value_max[i] + value_min[i]) / 2);
   }
 }
 void Atlas::setThreshold(const int index, const int threshold){
