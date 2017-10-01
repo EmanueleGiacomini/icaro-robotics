@@ -14,7 +14,6 @@
 #include "src/Phoenix_shiftreg.h"
 #include "src/Phoenix_motor.h"
 #include "src/Phoenix_compass.h"
-#include "src/Phoenix_line.h"
 
 const int motor_pwm_pin[4];
 const int shift_reg_pin[3];

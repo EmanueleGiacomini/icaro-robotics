@@ -7,6 +7,8 @@
  */
 
 #include <Wire.h>
+#include "src/Phoenix_com.h"
+#include "src/Phoenix_line.h"
 
  void setup(){
 
