@@ -9,7 +9,7 @@
 #include "rescue_sensors.h"
 
 rescue_line::rescue_line(){
-  
+
 }
 rescue_line::~rescue_line(){
   free(_sensor_pins);
@@ -67,7 +67,22 @@ int rescue_line::readSensor(const int index){
   return analogRead(_sensor_pins[index]);
 }
 
+int rescue_line::readSensorBool(const int index){
+  // Revert greater / lesser sign to fix.
+  if(readSensor(index) < _threshold[index]){
+    return 1;
+  }
+  return 0;
+}
+
 int rescue_line::readLine(){
+  int line_position = 0;
+  int sensor_counter = 0;
+  for(int i = 0; i < _size; i++){
+    line_position += readSensorBool(i) * _sensor_position[i];
+    sensor_counter += readSensorBool(i);
+  }
+  return line_position / sensor_counter;
 }
 
 void rescue_line::startCalibration(){
@@ -100,4 +115,10 @@ void rescue_line::stopCalibration(){
 
 void rescue_line::setThreshold(const int index, const int threshold){
   vecWriteAt(_threshold, _size, index, threshold);
+}
+
+void rescue_line::setSensorPosition(const int index, const int value){
+  if(index >= 0 && index < _size){
+      _sensor_position[index] = value;
+  }  
 }
