@@ -6,8 +6,8 @@
   @version 0.1 07/10/2017
 */
 
-#ifndef rescue_sensor_h
-#define rescue_sensor_h
+#ifndef rescue_sensors_h
+#define rescue_sensors_h
 
 #include <Arduino.h>
 #include <math.h>
