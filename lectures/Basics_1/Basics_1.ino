@@ -65,6 +65,31 @@ Serial.begin(9600); // NOT GOOD
   Serial.print("X now is ");
   Serial.println(x);
 }
+
+/*
+  OPERATORS
+  + : addition a + b
+  - : subtracton a - b
+  * : multiplication a * b
+  / : division a / b
+  % : modulus ( or remainder ) a % b
+  ++ : increment a++;
+  -- : decrement a--;
+
+  COMPARISON OPERATORS
+  == : equal  if( a == b ) do stuff
+  != : not equal if( a != b ) do stuff
+  > : greater than a > b
+  < : less than a < b
+  >= : greater than or equal to a >= b
+  <= : less than or equal to a <= b
+
+  BOOLEAN OPERATORS
+  && : and if( a == 1 && b == 1 ) do stuff
+  || : or if( a == 1 || b == 1 ) do stuff
+  ! : not if( !a ) do stuff <---> if( a == 0 ) do stuff
+
+*/
 /*
   int pippo = ANSWER_TO_UNIVERSE; // SBAGLIATO
 int pippo = ANSWER_TO_UNIVERSE // Giusto!
