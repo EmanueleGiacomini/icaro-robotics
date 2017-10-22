@@ -166,69 +166,18 @@ void loop(){
   */
 
   /*
-
-  if(digitalRead(PIN_TASTO) == HIGH){
-    digitalWrite(PIN_LED, HIGH);
-  } else {
-    digitalWrite(PIN_LED, LOW);
-  }
-
-  */
-
-  /*
     Scrivere un programma che scrive sulla seriale "Tasto premuto" quando il tasto
     viene premuto.
     Suggerimento: Chiedete cos'è una variabile statica.
   */
 
-/*
-  static int previous_state;
-
-  int current_state = digitalRead(PIN_TASTO);
-  if(current_state == HIGH && current_state != previous_state){
-      Serial.println("TASTO PREMUTO");
-  }
-  previous_state = current_state;
-*/
   /*
     scrivere un programma che è conta quante volte è stato premuto il tasto.
   */
-
-/*
-
-  static int previous_state;
-  static int volte_premuto = 0;
-
-  int current_state = digitalRead(PIN_TASTO);
-  if(current_state == HIGH && current_state != previous_state){
-      volte_premuto++;
-      Serial.println(volte_premuto);
-  }
-  previous_state = current_state;
-
-*/
 
   /*
     Se il tasto viene premuto un numero pari di volte, si richiede l'accensione del
     led 13 integrato in Arduino.
     suggerimento: utilizzare l'operatore modulo %.
   */
-
-/*
-  static int previous_state;
-  static int volte_premuto = 0;
-
-  int current_state = digitalRead(PIN_TASTO);
-  if(current_state == HIGH && current_state != previous_state){
-      volte_premuto++;
-      Serial.println(volte_premuto);
-  }
-  if(( volte_premuto % 2 ) == 0){
-    digitalWrite(PIN_LED, HIGH);
-  } else {
-    digitalWrite(PIN_LED, LOW);
-  }
-  previous_state = current_state;
-
-*/
 }
