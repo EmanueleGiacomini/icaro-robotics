@@ -149,8 +149,8 @@ void setup(){
 
 // PRIMA DI INIZIARE GLI ESERCIZI DEDICATI AD ARDUINO:
 // togliere il commento alle prossime due righe.
- pinMode(PIN_TASTO, INPUT);
- pinMode(PIN_LED, OUTPUT);
+// pinMode(PIN_TASTO, INPUT);
+// pinMode(PIN_LED, OUTPUT);
 
 
 }
